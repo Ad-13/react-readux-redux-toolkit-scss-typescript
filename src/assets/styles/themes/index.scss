@@ -1,0 +1,9 @@
+@import './common';
+
+[data-theme="default"] {
+  @import './default';
+}
+
+[data-theme="dark"] {
+  @import './dark';
+}

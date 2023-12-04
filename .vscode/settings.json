@@ -1,0 +1,11 @@
+{
+  "prettier.requireConfig": false,
+  "prettier.useEditorConfig": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.format.enable": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "javascript.format.enable": true,
+  "editor.formatOnPaste": false
+}
