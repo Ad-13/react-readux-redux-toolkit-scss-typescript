@@ -1,2 +1,2 @@
-export * from './AppRouter';
+export { default } from './AppRouter';
 export * from './types';

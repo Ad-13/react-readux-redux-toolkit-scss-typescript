@@ -33,8 +33,9 @@
         "newlinesBetween": "always",
         "groups": [
           "/^react/",
-          "/@pages/",
+          "/@reduxjs/",
           "/@store/",
+          "/@pages/",
           "/@services/",
           "/@features/",
           "/@components/",
@@ -42,6 +43,7 @@
           "/@hooks/",
           "/@helpers/",
           "/@utils/",
+          "/types/",
           "/@images/",
           "/@styles/"
         ],
