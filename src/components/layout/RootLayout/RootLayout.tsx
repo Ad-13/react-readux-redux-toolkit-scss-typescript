@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Footer from '@features/Footer';
-import Header from '@features/Header';
+import Footer from '@components/layout/Footer';
+import Header from '@components/layout/Header';
 
 // import styles from './RootLayout.module.scss';
 

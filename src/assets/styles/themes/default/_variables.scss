@@ -1,2 +1,12 @@
-$background-color: #fff;
-$text-color: #333;
+[data-theme="default"] {
+  --background-color: #fff;
+  --text-color: #333;
+  --heading-color: inherit;
+  --link-color: #0d6efd;
+  --link-color-rgb: 13,110,253;
+  --link-decoration: underline;
+  --link-hover-color: #0a58ca;
+  --link-hover-color-rgb: 10,88,202;
+  --modal-header-padding-y: 1rem;
+  --modal-header-padding-x: 1rem;
+}

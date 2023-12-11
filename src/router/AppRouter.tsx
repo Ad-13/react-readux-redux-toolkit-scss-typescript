@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { RootState } from '@store/index';
 
-import RootLayout from '@features/RootLayout';
+import RootLayout from '@components/layout/RootLayout';
 
 import { ERouteNames } from './types';
 

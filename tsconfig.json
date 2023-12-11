@@ -24,13 +24,17 @@
       "@app/*": ["*"],
       "@styles/*": ["assets/styles/*"],
       "@images/*": ["assets/images/*"],
-      "@constants/*": ["constants/*"],
       "@store/*": ["store/*"],
       "@models/*": ["models/*"],
       "@components/*": ["components/*"],
+      "@modals/*": ["components/modals/*"],
+      "@inputs/*": ["components/inputs/*"],
       "@features/*": ["features/*"],
       "@services/*": ["services/*"],
       "@router/*": ["router/*"],
+      "@enums/*": ["utils/enums/*"],
+      "@helpers/*": ["utils/helpers/*"],
+      "@constants/*": ["utils/constants/*"],
       "@pages/*": ["pages/*"]
     }
   },

@@ -18,6 +18,8 @@
   },
   "rules": {
     "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off",
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
@@ -32,22 +34,39 @@
       {
         "newlinesBetween": "always",
         "groups": [
-          "/^react/",
-          "/@reduxjs/",
+          [
+            "/^react/",
+            "/^@reduxjs/",
+            "/^formik/",
+            "/^yup/",
+            "/^framer-motion/",
+            "/^classnames/"
+          ],
           "/@store/",
           "/@pages/",
           "/@services/",
           "/@features/",
-          "/@components/",
+          [
+            "/^@components/",
+            "/^@modals/",
+            "/^@inputs/"
+          ],
           "/@models/",
-          "/@hooks/",
-          "/@helpers/",
-          "/@utils/",
-          "/types/",
+          [
+            "/^@utils/",
+            "/^@helpers/",
+            "/^@hooks/",
+            "/.hooks/",
+            "/^types/",
+            "/^@types/",
+            "/^@enums/",
+            "/.form/",
+            "/^@constants/"
+          ],
+          ["parent", "sibling", "index"],
           "/@images/",
           "/@styles/"
-        ],
-        "alphabetize": { "order": "asc", "ignoreCase": true }
+        ]
       }
     ]
   }
