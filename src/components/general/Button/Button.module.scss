@@ -1,3 +1,9 @@
+.btnWrapper {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
 .btn {
   display: inline-block;
   cursor: pointer;
@@ -15,6 +21,11 @@
 
   &:hover {
     opacity: 0.8;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 

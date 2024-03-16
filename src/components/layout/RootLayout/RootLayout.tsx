@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Footer from '@components/layout/Footer';
@@ -20,4 +20,4 @@ const RootLayout: FC = () => {
   );
 };
 
-export default RootLayout;
+export default memo(RootLayout);

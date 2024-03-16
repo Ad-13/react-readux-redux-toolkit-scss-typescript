@@ -1,19 +1,21 @@
-import { object, string } from 'yup';
+import { object, ref, string } from 'yup';
 
-export type TLoginFormValues = {
-  name: string;
-  email: string;
-  password: string;
-};
+import { TRegisterRequest } from '@helpersTypes/auth';
 
-export const initialValues: TLoginFormValues = {
+export const initialValues: TRegisterRequest = {
   name: '',
   email: '',
+  telephone: '',
   password: '',
+  confirmPassword: '',
 };
 
 export const validationSchema = object({
   name: string().required('Required'),
   email: string().email().required('Required'),
+  telephone: string().required('Required'),
   password: string().required('Required'),
+  confirmPassword: string()
+    .oneOf([ref('password')], 'Passwords must match')
+    .required('Required'),
 });

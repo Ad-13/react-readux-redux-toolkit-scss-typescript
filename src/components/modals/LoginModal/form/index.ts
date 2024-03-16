@@ -1,16 +1,13 @@
 import { object, string } from 'yup';
 
-export type TLoginFormValues = {
-  username: string;
-  password: string;
-};
+import { TLoginRequest } from '@helpersTypes/auth';
 
-export const initialValues: TLoginFormValues = {
-  username: '',
+export const initialValues: TLoginRequest = {
+  email: '',
   password: '',
 };
 
 export const validationSchema = object({
-  username: string().required('Required'),
+  email: string().email().required('Required'),
   password: string().required('Required'),
 });

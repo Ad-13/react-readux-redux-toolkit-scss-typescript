@@ -15,7 +15,14 @@ interface IProps {
   footer?: ReactElement;
 }
 
-const Modal: FC<PropsWithChildren<IProps>> = ({ title, isOpen, onClose, children, header, footer }) => {
+const Modal: FC<PropsWithChildren<IProps>> = ({
+  title,
+  isOpen,
+  onClose,
+  children,
+  header,
+  footer,
+}) => {
   console.log('Modal');
 
   useEscape(onClose, isOpen);
@@ -65,6 +72,7 @@ const Modal: FC<PropsWithChildren<IProps>> = ({ title, isOpen, onClose, children
   );
 };
 
-const ModalWithPortal: FC<PropsWithChildren<IProps>> = props => createPortal(<Modal {...props} />, document.body);
+const ModalWithPortal: FC<PropsWithChildren<IProps>> = props =>
+  createPortal(<Modal {...props} />, document.body);
 
 export default ModalWithPortal;

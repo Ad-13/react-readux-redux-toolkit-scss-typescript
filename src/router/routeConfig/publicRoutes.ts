@@ -1,15 +1,16 @@
 import HomePage from '@pages/HomePage';
-import LoginPage from '@pages/LoginPage';
 import NotFoundPage from '@pages/NotFoundPage';
-import RegisterPage from '@pages/RegisterPage';
+import CarsPage from '@pages/CarsPage';
+import CartPage from '@pages/CartPage';
 
-import { ERouteNames, TRoute } from '../types';
+import { ERouteNames } from '@enums/ERouteNames';
+import { TRoute } from '@helpersTypes/TRoute';
 
 const publicRoutes: TRoute[] = [
   { path: ERouteNames.HOME, key: ERouteNames.HOME, element: HomePage },
-  { path: ERouteNames.LOGIN, key: ERouteNames.LOGIN, element: LoginPage },
+  { path: ERouteNames.CARS, key: ERouteNames.CARS, element: CarsPage },
+  { path: ERouteNames.CART, key: ERouteNames.CART, element: CartPage },
   { path: ERouteNames.NOT_FOUND, key: ERouteNames.NOT_FOUND, element: NotFoundPage },
-  { path: ERouteNames.REGISTER, key: ERouteNames.REGISTER, element: RegisterPage },
 ];
 
 export default publicRoutes;

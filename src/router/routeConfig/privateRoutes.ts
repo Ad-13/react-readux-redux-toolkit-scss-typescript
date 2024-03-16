@@ -1,11 +1,10 @@
-import BasketPage from '@pages/BasketPage';
 import CabinetPage from '@pages/CabinetPage';
 
-import { TRoute, ERouteNames } from '../types';
+import { ERouteNames } from '@enums/ERouteNames';
+import { TRoute } from '@helpersTypes/TRoute';
 
 const privateRoutes: TRoute[] = [
-  { path: ERouteNames.CABINET, key: ERouteNames.HOME, element: CabinetPage },
-  { path: ERouteNames.BASKET, key: ERouteNames.HOME, element: BasketPage },
+  { path: ERouteNames.CABINET, key: ERouteNames.CABINET, element: CabinetPage },
 ];
 
 export default privateRoutes;

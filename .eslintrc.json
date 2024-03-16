@@ -1,5 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -9,17 +16,11 @@
     "prettier"
   ],
   "plugins": ["react", "@typescript-eslint", "import-helpers"],
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
   "rules": {
     "prettier/prettier": "error",
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": false }],
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
@@ -37,28 +38,34 @@
           [
             "/^react/",
             "/^@reduxjs/",
+            "/^redux/",
+            "/^jwt-decode/",
+            "/^axios/",
             "/^formik/",
             "/^yup/",
             "/^framer-motion/",
             "/^classnames/"
           ],
           "/@store/",
+          "/@reducers/",
           "/@pages/",
           "/@services/",
           "/@features/",
           [
             "/^@components/",
+            "/^./components/",
             "/^@modals/",
             "/^@inputs/"
           ],
           "/@models/",
           [
+            "/^@middlewares/",
             "/^@utils/",
             "/^@helpers/",
             "/^@hooks/",
             "/.hooks/",
             "/^types/",
-            "/^@types/",
+            "/^@helpersTypes/",
             "/^@enums/",
             "/.form/",
             "/^@constants/"

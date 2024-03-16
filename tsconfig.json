@@ -4,7 +4,7 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,25 +21,30 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@app/*": ["*"],
+      // "@app/*": ["*"],
       "@styles/*": ["assets/styles/*"],
       "@images/*": ["assets/images/*"],
       "@store/*": ["store/*"],
+      "@reducers/*": ["store/reducers/*"],
       "@models/*": ["models/*"],
       "@components/*": ["components/*"],
       "@modals/*": ["components/modals/*"],
       "@inputs/*": ["components/inputs/*"],
       "@features/*": ["features/*"],
+      "@middlewares/*": ["middlewares/*"],
       "@services/*": ["services/*"],
       "@router/*": ["router/*"],
-      "@enums/*": ["utils/enums/*"],
-      "@helpers/*": ["utils/helpers/*"],
-      "@constants/*": ["utils/constants/*"],
-      "@pages/*": ["pages/*"]
+      // "@helpers/*": ["helpers/*"],
+      "@constants/*": ["helpers/constants/*"],
+      "@enums/*": ["helpers/enums/*"],
+      "@hooks/*": ["helpers/hooks/*"],
+      "@helpersTypes/*": ["helpers/types/*"],
+      "@utils/*": ["helpers/utils/*"],
+      "@pages/*": ["pages/*"],
     }
   },
   "include": [
-    "src/**/*.ts", "src/**/*.tsx"
+    "src/**/*.ts", "src/**/*.tsx",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

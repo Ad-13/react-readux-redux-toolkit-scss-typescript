@@ -1,13 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Formik, Form, Field } from 'formik';
+
+import { register } from '@reducers/auth/thunks';
 
 import Modal from '@modals/Modal';
 import Input from '@inputs/Input';
 import Button from '@components/general/Button';
+import ModalButtons from '@components/general/ModalButtons';
 
-import { TLoginFormValues, initialValues, validationSchema } from './form';
+import useActions from '@hooks/useActions';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { TRegisterRequest } from '@helpersTypes/auth';
+import { initialValues, validationSchema } from './form';
 
-import styles from './RegisterModal.module.scss';
+// import styles from './RegisterModal.module.scss';
 
 interface IProps {
   isOpen: boolean;
@@ -17,31 +23,46 @@ interface IProps {
 
 const RegisterModal: FC<IProps> = ({ isOpen, onClose, onLoginClick }) => {
   console.log('RegisterModal');
+  const { register: registerThunk } = useActions({ register });
+  const { pending } = useAppSelector(state => state.auth);
 
-  const handleSubmit = (values: TLoginFormValues) => {
-    // Ваша логика для обработки данных формы
+  const handleSubmit = (values: TRegisterRequest) => {
     console.log(values);
+    registerThunk(values);
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Register">
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-        <Form>
-          <Field component={Input} name="name" type="text" label="Name" />
-          <Field component={Input} name="email" type="text" label="Email" />
-          <Field component={Input} name="password" type="password" label="Password" />
-          <div className={styles.actions}>
-            <Button type="submit" variant="primary">
-              Register
-            </Button>
-            <Button type="button" variant="link" onClick={onLoginClick}>
-              I am already registered
-            </Button>
-          </div>
-        </Form>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isValid }) => (
+          <Form>
+            <Field component={Input} name="name" type="text" label="Name" autoFocus />
+            <Field component={Input} name="email" type="text" label="Email" />
+            <Field component={Input} name="telephone" type="text" label="Telephone" />
+            <Field component={Input} name="password" type="password" label="Password" />
+            <Field
+              component={Input}
+              name="confirmPassword"
+              type="password"
+              label="Confirm Password"
+            />
+            <ModalButtons>
+              <Button type="submit" variant="primary" pending={pending} disabled={!isValid}>
+                Register
+              </Button>
+              <Button type="button" variant="link" onClick={onLoginClick} disabled={pending}>
+                I am already registered
+              </Button>
+            </ModalButtons>
+          </Form>
+        )}
       </Formik>
     </Modal>
   );
 };
 
-export default RegisterModal;
+export default memo(RegisterModal);

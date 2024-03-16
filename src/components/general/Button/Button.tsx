@@ -1,16 +1,37 @@
-import classNames from 'classnames';
 import React, { FC, PropsWithChildren } from 'react';
+import classNames from 'classnames';
+
+import Spinner from '@components/general/Spinner';
 
 import styles from './Button.module.scss';
 
 interface IProps {
   type?: 'button' | 'submit' | 'reset' | undefined;
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'danger'
+    | 'warning'
+    | 'info'
+    | 'light'
+    | 'dark'
+    | 'link';
   className?: string;
+  pending?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
-const Button: FC<PropsWithChildren<IProps>> = ({ type = 'button', className, variant, children, ...props }) => {
+const Button: FC<PropsWithChildren<IProps>> = ({
+  type = 'button',
+  className,
+  variant,
+  children,
+  pending,
+  disabled,
+  ...props
+}) => {
   const buttonClasses = classNames(
     styles.btn,
     variant && styles[`btn${variant.charAt(0).toUpperCase() + variant.slice(1)}`],
@@ -18,9 +39,12 @@ const Button: FC<PropsWithChildren<IProps>> = ({ type = 'button', className, var
   );
 
   return (
-    <button {...props} type={type} className={buttonClasses}>
-      {children}
-    </button>
+    <div className={styles.btnWrapper}>
+      <button {...props} type={type} className={buttonClasses} disabled={disabled || pending}>
+        {children}
+      </button>
+      {pending && <Spinner width={25} />}
+    </div>
   );
 };
 
