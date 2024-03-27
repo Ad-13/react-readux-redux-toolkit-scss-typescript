@@ -3,15 +3,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #fff; // You can customize the background color
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); // Add a subtle box shadow
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 
   .logo {
     font-size: 24px;
     font-weight: bold;
+    margin-left: 55px;
     a {
       text-decoration: none;
-      color: #333; // Customize the color
+      color: #333;
     }
   }
 
@@ -21,9 +22,9 @@
 
     a {
       text-decoration: none;
-      color: var(--text-color); // Customize the color
+      color: var(--text-color);
       &:hover {
-        color: #007bff; // Change color on hover
+        color: #007bff;
       }
     }
   }

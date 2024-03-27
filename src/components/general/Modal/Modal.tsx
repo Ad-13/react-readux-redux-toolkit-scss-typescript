@@ -1,6 +1,8 @@
-import React, { FC, PropsWithChildren, MouseEvent, ReactElement, ReactNode } from 'react';
+import React, { FC, PropsWithChildren, ReactElement, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+
+import BgOverlay from '@components/general/BgOverlay';
 
 import useEscape from './hooks/useEscape';
 
@@ -27,20 +29,10 @@ const Modal: FC<PropsWithChildren<IProps>> = ({
 
   useEscape(onClose, isOpen);
 
-  const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) onClose();
-  };
-
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          className={styles.modalOverlay}
-          onClick={handleOverlayClick}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+        <BgOverlay onOverlayClick={onClose}>
           <motion.div
             className={styles.modalContent}
             initial={{ y: -50 }}
@@ -66,7 +58,7 @@ const Modal: FC<PropsWithChildren<IProps>> = ({
             <div className={styles.modalBody}>{children}</div>
             {footer && <div className={styles.modalFooter}>{footer}</div>}
           </motion.div>
-        </motion.div>
+        </BgOverlay>
       )}
     </AnimatePresence>
   );

@@ -5,9 +5,12 @@ export type TCar = {
   make: string;
   model: string;
   year: number;
+  price: number;
+  img: string;
+  info?: string;
 };
 
-export type TInputCreateCar = Pick<TCar, 'make' | 'model' | 'year'>;
+export type TInputCreateCar = Omit<TCar, 'id'>;
 
 export type TInputUpdateCar = TInputCreateCar & Pick<TCar, 'id'>;
 

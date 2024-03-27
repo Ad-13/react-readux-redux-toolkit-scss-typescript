@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 
 import { login } from '@reducers/auth/thunks';
 
-import Modal from '@modals/Modal';
+import Modal from '@components/general/Modal';
 import Input from '@inputs/Input';
 import Button from '@components/general/Button';
 import ModalButtons from '@components/general/ModalButtons';

@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from '@components/layout/Footer';
 import Header from '@components/layout/Header';
 
-// import styles from './RootLayout.module.scss';
+import styles from './RootLayout.module.scss';
 
 const RootLayout: FC = () => {
   console.log('RootLayout');
@@ -12,7 +12,7 @@ const RootLayout: FC = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
       <Footer />

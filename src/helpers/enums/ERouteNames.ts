@@ -5,5 +5,6 @@ export enum ERouteNames {
   CATALOG = '/catalog',
   CABINET = '/cabinet',
   NOT_FOUND = '/not-found',
+  ADMIN = '/admin',
   OTHER = '*',
 }
