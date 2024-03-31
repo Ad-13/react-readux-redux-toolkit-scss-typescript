@@ -1,43 +1,23 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { FieldProps } from 'formik';
 import classNames from 'classnames';
 
 import InputError from '@components/inputs/InputError';
 
-import styles from './Input.module.scss';
-
-type InputType =
-  | 'text'
-  | 'number'
-  | 'email'
-  | 'password'
-  | 'tel'
-  | 'date'
-  | 'time'
-  | 'datetime-local'
-  | 'month'
-  | 'week'
-  | 'url'
-  | 'search'
-  | 'color';
+import styles from './Textarea.module.scss';
 
 interface IProps extends FieldProps {
   label: string;
-  type: InputType;
   isShowError: boolean;
   disabled: boolean;
-  image: ReactNode;
 }
 
-const Input: FC<IProps> = ({
+const Textarea: FC<IProps> = ({
   field: { name, value, onBlur, onChange },
   form: { touched, errors },
   label,
-  type = 'text',
   isShowError = true,
-  image,
   disabled,
-  ...props
 }) => {
   const error = (touched[name] && errors[name]) as string;
 
@@ -53,9 +33,7 @@ const Input: FC<IProps> = ({
           [styles.disabled]: disabled,
         })}
       >
-        <input
-          {...props}
-          type={type}
+        <textarea
           id={name}
           name={name}
           value={value}
@@ -66,11 +44,10 @@ const Input: FC<IProps> = ({
             [styles.invalid]: error,
           })}
         />
-        {image && <div className={styles.img}>{image}</div>}
       </div>
       {isShowError && error && <InputError error={error} />}
     </div>
   );
 };
 
-export default Input;
+export default Textarea;
