@@ -1,9 +1,7 @@
-import { object, array } from 'yup';
+import { object } from 'yup';
 
 export const initialValues = {
-  test: '',
+  test: { value: 3, label: 'name 3' },
 };
 
-export const validationSchema = object({
-  test: array().required('Please select a file'),
-});
+export const validationSchema = object({});
