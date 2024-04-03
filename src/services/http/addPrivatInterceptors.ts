@@ -32,6 +32,7 @@ const addPrivatInterceptors = (api: AxiosInstance): AxiosInstance => {
           const response = await authApi.refreshJwtToken();
           processToken(response.data.accessToken);
           return api(originalRequest);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (refreshError: any) {
           await store.dispatch(logout());
           handleInterceptorsError(refreshError.response.data.errors);
