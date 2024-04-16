@@ -7,16 +7,17 @@ import styles from './Table.module.scss';
 interface Props<T extends object> {
   columns: Column<T>[];
   data: T[];
+  className?: string;
 }
 
-const Table = <T extends object>({ columns, data }: PropsWithChildren<Props<T>>) => {
+const Table = <T extends object>({ columns, data, className }: PropsWithChildren<Props<T>>) => {
   const { getTableProps, getTableBodyProps, prepareRow, headerGroups, rows } = useTable<T>({
     columns,
     data,
   });
 
   return (
-    <div className={styles.customTableWrapper}>
+    <div className={classnames(styles.customTableWrapper, className)}>
       <div {...getTableProps()} className={styles.customTable}>
         <div className={styles.tableHeader}>
           {headerGroups.map((headerGroup, index) => (

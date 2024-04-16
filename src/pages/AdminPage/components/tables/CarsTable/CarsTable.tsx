@@ -5,19 +5,26 @@ import { addCar, updateCar } from '@reducers/cars/thunks';
 import Table from '@components/general/Table';
 import Spinner from '@components/general/Spinner';
 import Button from '@components/general/Button';
+import GalleryModal from '@components/modals/GalleryModal';
 import CarsTableForm from './components/CarsTableForm';
 
 import useActions from '@hooks/useActions';
 import { TCar, TEditCar } from '@helpersTypes/cars';
 import useColumns from './hooks/useColumns';
 import useCarsTableData from './hooks/useCarsTableData';
+import { TGalleryImage } from '@helpersTypes/TGalleryImage';
+import { baseUrl } from '@constants/api';
+
+import styles from './CarsTable.module.scss';
 
 const CarsTable: FC = () => {
   console.log('CarsTable');
   const [editMode, setEditMode] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemForEdit, setItemForEdit] = useState<TCar | null>(null);
+  const [imagesForGallery, setImagesForGallery] = useState<TGalleryImage[]>([]);
   const { cars, getPending } = useCarsTableData();
-  const columns = useColumns({ handleEdit });
+  const columns = useColumns({ handleEdit, openGallery });
   const { addCar: addCarThunk, updateCar: updateCarThunk } = useActions({
     addCar,
     updateCar,
@@ -29,6 +36,20 @@ const CarsTable: FC = () => {
     setEditMode(false);
     setItemForEdit(null);
   };
+
+  const closeGallery = () => {
+    setIsModalOpen(false);
+    setImagesForGallery([]);
+  };
+
+  function openGallery(images: string[]) {
+    const galleryImages: TGalleryImage[] = images.map(src => ({
+      original: `${baseUrl}/${src}`,
+      thumbnail: `${baseUrl}/${src}`,
+    }));
+    setIsModalOpen(true);
+    setImagesForGallery(galleryImages);
+  }
 
   function handleEdit(item: TCar) {
     setEditMode(true);
@@ -62,15 +83,15 @@ const CarsTable: FC = () => {
   return (
     <>
       {!cars?.length ? (
-        <>
-          <div>No data Found</div>
-        </>
+        <div>No data Found</div>
       ) : (
-        <Table<TCar> columns={columns} data={cars} />
+        <Table<TCar> className={styles.table} columns={columns} data={cars} />
       )}
       <Button variant="primary" onClick={addItem}>
         Add Item
       </Button>
+
+      <GalleryModal isOpen={isModalOpen} onClose={closeGallery} images={imagesForGallery} />
     </>
   );
 };

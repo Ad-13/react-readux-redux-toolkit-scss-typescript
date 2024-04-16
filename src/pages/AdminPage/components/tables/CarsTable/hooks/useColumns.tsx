@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Column, Row } from 'react-table';
+import classnames from 'classnames';
 
 import { deleteCar } from '@reducers/cars/thunks';
 
@@ -16,9 +17,10 @@ import styles from './../CarsTable.module.scss';
 
 type IProps = {
   handleEdit: (data: TCar) => void;
+  openGallery: (images: string[]) => void;
 };
 
-const useColumns = ({ handleEdit }: IProps): Column<TCar>[] => {
+const useColumns = ({ handleEdit, openGallery }: IProps): Column<TCar>[] => {
   const [deletingRowId, setDeletingRowId] = useState<TId | null>(null);
   const { deletePending } = useAppSelector(state => state.cars);
   const { deleteCar: deleteCarThunk } = useActions({
@@ -37,7 +39,12 @@ const useColumns = ({ handleEdit }: IProps): Column<TCar>[] => {
         Header: 'images',
         accessor: 'images',
         Cell: ({ row }) => (
-          <img className="responsive-img" src={`${baseUrl}/${row.original.images[0]}`} alt="img" />
+          <img
+            className={`responsive-img pointer ${styles.rowImg}`}
+            src={`${baseUrl}/${row.original.images[0]}`}
+            alt="img"
+            onClick={() => openGallery(row.original.images)}
+          />
         ),
       },
       {
