@@ -9,12 +9,12 @@ import { TCar } from '@helpersTypes/cars';
 const CarsPage: FC = () => {
   console.log('CarsPage');
 
-  const { cars, pending } = useCars();
+  const { cars, getPending } = useCars();
 
   return (
     <>
       <div>CarsPage</div>
-      <List<TCar> items={cars} pending={pending} renderItem={CarListItem} />
+      <List<TCar> items={cars} pending={getPending} renderItem={CarListItem} />
     </>
   );
 };

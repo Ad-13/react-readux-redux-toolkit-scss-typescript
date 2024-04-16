@@ -5,13 +5,10 @@ import classNames from 'classnames';
 
 import InputError from '@components/inputs/InputError';
 
+import { OptionType } from '@helpersTypes/selectOption';
+
 import styles from './Select.module.scss';
 import './Select.scss';
-
-interface OptionType {
-  value: string;
-  label: string;
-}
 
 interface IProps extends FieldProps {
   label: string;
@@ -23,8 +20,9 @@ interface IProps extends FieldProps {
   isSearchable: boolean;
   isMulti: boolean;
   disabled: boolean;
+  autoFocus: boolean;
   options: OptionType[];
-  customCallback: () => void;
+  customCallback: (selectedOption: OptionType) => void;
 }
 
 const SelectInput: FC<IProps> = ({
@@ -33,6 +31,7 @@ const SelectInput: FC<IProps> = ({
   label,
   isShowError = true,
   disabled,
+  autoFocus,
   options = [],
   placeholder = '',
   isClearable,
@@ -46,7 +45,7 @@ const SelectInput: FC<IProps> = ({
 
   const handleChange = (selectedOption: OptionType) => {
     setFieldValue(name, selectedOption);
-    customCallback?.();
+    customCallback?.(selectedOption);
   };
 
   return (
@@ -64,6 +63,7 @@ const SelectInput: FC<IProps> = ({
         isSearchable={isSearchable}
         placeholder={placeholder}
         isMulti={isMulti}
+        autoFocus={autoFocus}
       />
       {isShowError && error && <InputError error={error} />}
     </div>

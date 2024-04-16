@@ -1,0 +1,22 @@
+.actionsCell {
+  min-width: 125px;
+  position: relative;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.spinnerWrapper {
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}

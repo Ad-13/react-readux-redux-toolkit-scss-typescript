@@ -5,8 +5,8 @@ import { getCars } from '@reducers/cars/thunks';
 import useActions from '@hooks/useActions';
 import { useAppSelector } from '@hooks/useAppSelector';
 
-export const useCars = () => {
-  console.log('useCars');
+const useCarsTableData = () => {
+  console.log('useCarsTableData');
   const { cars, getPending } = useAppSelector(state => state.cars);
   const { getCars: getCarsThunk } = useActions({
     getCars,
@@ -18,3 +18,5 @@ export const useCars = () => {
 
   return { cars, getPending };
 };
+
+export default useCarsTableData;

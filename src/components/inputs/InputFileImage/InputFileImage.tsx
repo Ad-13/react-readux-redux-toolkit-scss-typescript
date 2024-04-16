@@ -5,7 +5,9 @@ import classNames from 'classnames';
 import InputError from '@components/inputs/InputError';
 import Button from '@components/general/Button';
 
-import styles from './InputFile.module.scss';
+import { baseUrl } from '@constants/api';
+
+import styles from './InputFileImage.module.scss';
 
 interface IProps extends FieldProps<(string | File)[]> {
   label: string;
@@ -15,7 +17,7 @@ interface IProps extends FieldProps<(string | File)[]> {
   multiple: boolean;
 }
 
-const InputFile: FC<IProps> = ({
+const InputFileImage: FC<IProps> = ({
   field: { name, onBlur, value },
   form: { touched, errors, setFieldValue },
   label,
@@ -38,6 +40,9 @@ const InputFile: FC<IProps> = ({
     );
   };
 
+  const getFileUrl = (item: string | File) =>
+    typeof item === 'string' ? `${baseUrl}/${item}` : URL.createObjectURL(item);
+
   const error = (touched[name] && errors[name]) as string;
 
   return (
@@ -58,6 +63,7 @@ const InputFile: FC<IProps> = ({
                     <i className="fa-regular fa-trash-can" />
                   </Button>
                   <span>{item}</span>
+                  <img className={styles.previewImg} src={getFileUrl(valueItem)} alt="Preview" />
                 </div>
               );
             })}
@@ -73,6 +79,7 @@ const InputFile: FC<IProps> = ({
           disabled={disabled}
           className={styles.hiddenInput}
           multiple={multiple}
+          accept="image/*"
         />
         <label className={styles.customFileInput} htmlFor={name}>
           {btnText}
@@ -83,4 +90,4 @@ const InputFile: FC<IProps> = ({
   );
 };
 
-export default InputFile;
+export default InputFileImage;
