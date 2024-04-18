@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import BgOverlay from '@components/general/BgOverlay';
 
-import useEscape from './hooks/useEscape';
+import useModalEscape from './hooks/useModalEscape';
 
 import styles from './Modal.module.scss';
 
@@ -27,7 +27,7 @@ const Modal: FC<PropsWithChildren<IProps>> = ({
 }) => {
   console.log('Modal');
 
-  useEscape(onClose, isOpen);
+  useModalEscape(onClose, isOpen);
 
   return (
     <AnimatePresence>

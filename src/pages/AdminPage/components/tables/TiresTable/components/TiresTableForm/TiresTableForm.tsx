@@ -7,20 +7,20 @@ import Button from '@components/general/Button';
 import InputFileImage from '@components/inputs/InputFileImage';
 
 import { initialValues } from './form';
-import { TCar, TEditCar } from '@helpersTypes/cars';
+import { TTire, TEditTire } from '@helpersTypes/tires';
 import { useAppSelector } from '@hooks/useAppSelector';
 import useEscape from '@hooks/useEscape';
 
-import styles from './CarsTableForm.module.scss';
+import styles from './TiresTableForm.module.scss';
 
 interface IProps {
-  item: TCar | null;
-  onSubmit: (value: TEditCar) => void;
+  item: TTire | null;
+  onSubmit: (value: TEditTire) => void;
   back: () => void;
 }
 
-const CarsTableForm: FC<IProps> = ({ item, onSubmit, back }) => {
-  const { addPending } = useAppSelector(state => state.cars);
+const TiresTableForm: FC<IProps> = ({ item, onSubmit, back }) => {
+  const { addPending } = useAppSelector(state => state.tires);
 
   useEscape(back);
 
@@ -34,9 +34,11 @@ const CarsTableForm: FC<IProps> = ({ item, onSubmit, back }) => {
       <Formik initialValues={{ ...initialValues, ...item }} onSubmit={onSubmit}>
         {({ isValid }) => (
           <Form>
-            <Field component={Input} name="make" label="Make" autoFocus />
+            <Field component={Input} name="brand" label="Brand" autoFocus />
             <Field component={Input} name="model" label="Model" />
-            <Field component={Input} type="number" name="year" label="Year" />
+            <Field component={Input} name="size" label="Size" />
+            <Field component={Input} name="speedRating" label="Speed Rating" />
+            <Field component={Input} type="number" name="loadIndex" label="Load Index" />
             <Field component={Input} type="number" name="price" label="Price" />
             <Field component={Input} type="number" name="quantity" label="Quantity" />
             <Field component={Textarea} name="description" label="description" />
@@ -57,4 +59,4 @@ const CarsTableForm: FC<IProps> = ({ item, onSubmit, back }) => {
   );
 };
 
-export default CarsTableForm;
+export default TiresTableForm;

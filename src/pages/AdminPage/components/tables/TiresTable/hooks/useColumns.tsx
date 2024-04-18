@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { Column, Row } from 'react-table';
 
-import { deleteCar } from '@reducers/cars/thunks';
+import { deleteTire } from '@reducers/tires/thunks';
 
 import Button from '@components/general/Button';
 import Spinner from '@components/general/Spinner';
 
 import { baseUrl } from '@constants/api';
-import { TCar } from '@helpersTypes/cars';
+import { TTire } from '@helpersTypes/tires';
 import { TId } from '@helpersTypes/TId';
 import { useAppSelector } from '@hooks/useAppSelector';
 import useActions from '@hooks/useActions';
@@ -15,20 +15,20 @@ import useActions from '@hooks/useActions';
 import styles from './../../Tables.module.scss';
 
 type IProps = {
-  handleEdit: (data: TCar) => void;
+  handleEdit: (data: TTire) => void;
   openGallery: (images: string[]) => void;
 };
 
-const useColumns = ({ handleEdit, openGallery }: IProps): Column<TCar>[] => {
+const useColumns = ({ handleEdit, openGallery }: IProps): Column<TTire>[] => {
   const [deletingRowId, setDeletingRowId] = useState<TId | null>(null);
-  const { deletePending } = useAppSelector(state => state.cars);
-  const { deleteCar: deleteCarThunk } = useActions({
-    deleteCar,
+  const { deletePending } = useAppSelector(state => state.tires);
+  const { deleteTire: deleteTireThunk } = useActions({
+    deleteTire,
   });
 
   const handleDelete = async (id: TId) => {
     setDeletingRowId(id);
-    await deleteCarThunk(id);
+    await deleteTireThunk(id);
     setDeletingRowId(null);
   };
 
@@ -60,24 +60,32 @@ const useColumns = ({ handleEdit, openGallery }: IProps): Column<TCar>[] => {
         accessor: 'id',
       },
       {
-        Header: 'make',
-        accessor: 'make',
+        Header: 'brand',
+        accessor: 'brand',
       },
       {
         Header: 'model',
         accessor: 'model',
       },
       {
-        Header: 'year',
-        accessor: 'year',
+        Header: 'size',
+        accessor: 'size',
       },
       {
-        Header: 'price',
-        accessor: 'price',
+        Header: 'load Index',
+        accessor: 'loadIndex',
+      },
+      {
+        Header: 'speed Rating',
+        accessor: 'speedRating',
       },
       {
         Header: 'quantity',
         accessor: 'quantity',
+      },
+      {
+        Header: 'price',
+        accessor: 'price',
       },
       {
         Header: 'info',
@@ -85,7 +93,7 @@ const useColumns = ({ handleEdit, openGallery }: IProps): Column<TCar>[] => {
       },
       {
         Header: 'actions',
-        Cell: ({ row }: { row: Row<TCar> }) => (
+        Cell: ({ row }: { row: Row<TTire> }) => (
           <>
             <div className={styles.btnWrapper}>
               <Button variant="info" onClick={() => handleEdit(row.original)}>

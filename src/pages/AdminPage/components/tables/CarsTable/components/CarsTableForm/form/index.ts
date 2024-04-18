@@ -7,5 +7,5 @@ export const initialValues: TEditCar = {
   year: 0,
   quantity: 0,
   price: 0,
-  info: '',
+  description: '',
 };

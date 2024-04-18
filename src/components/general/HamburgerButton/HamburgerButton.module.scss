@@ -7,6 +7,9 @@
   padding: 0;
   width: 30px;
   height: 30px;
+  &:focus {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
   
   .bar {
     padding: 0;

@@ -6,8 +6,8 @@ export const options = [
     label: 'Cars',
   },
   {
-    value: ECategories.carParts,
-    label: 'Car Parts',
+    value: ECategories.tires,
+    label: 'Tires',
   },
 ];
 

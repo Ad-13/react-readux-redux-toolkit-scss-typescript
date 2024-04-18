@@ -1,19 +1,17 @@
 import { useEffect } from 'react';
 
-const useEscape = (callback: () => void, isOpen: boolean): void => {
+const useEscape = (callback: () => void): void => {
   const handleEscape = (event: KeyboardEvent) => {
     if (event.key === 'Escape') callback();
   };
 
   useEffect(() => {
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
+    document.addEventListener('keydown', handleEscape);
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [isOpen, callback]);
+  }, [callback]);
 };
 
 export default useEscape;

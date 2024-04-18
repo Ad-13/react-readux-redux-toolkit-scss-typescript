@@ -1,33 +1,33 @@
 import React, { FC, useState } from 'react';
 
-import { addCar, updateCar } from '@reducers/cars/thunks';
+import { addTire, updateTire } from '@reducers/tires/thunks';
 
 import Table from '@components/general/Table';
 import Spinner from '@components/general/Spinner';
 import Button from '@components/general/Button';
 import GalleryModal from '@components/modals/GalleryModal';
-import CarsTableForm from './components/CarsTableForm';
+import TiresTableForm from './components/TiresTableForm';
 
 import useActions from '@hooks/useActions';
-import { TCar, TEditCar } from '@helpersTypes/cars';
+import { TTire, TEditTire } from '@helpersTypes/tires';
 import useColumns from './hooks/useColumns';
-import useCarsTableData from './hooks/useCarsTableData';
+import useTiresTableData from './hooks/useTiresTableData';
 import { TGalleryImage } from '@helpersTypes/TGalleryImage';
 import { baseUrl } from '@constants/api';
 
 import styles from './../Tables.module.scss';
 
-const CarsTable: FC = () => {
-  console.log('CarsTable');
+const TiresTable: FC = () => {
+  console.log('TiresTable');
   const [editMode, setEditMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [itemForEdit, setItemForEdit] = useState<TCar | null>(null);
+  const [itemForEdit, setItemForEdit] = useState<TTire | null>(null);
   const [imagesForGallery, setImagesForGallery] = useState<TGalleryImage[]>([]);
-  const { cars, getPending } = useCarsTableData();
+  const { tires, getPending } = useTiresTableData();
   const columns = useColumns({ handleEdit, openGallery });
-  const { addCar: addCarThunk, updateCar: updateCarThunk } = useActions({
-    addCar,
-    updateCar,
+  const { addTire: addTireThunk, updateTire: updateTireThunk } = useActions({
+    addTire,
+    updateTire,
   });
 
   const addItem = () => setEditMode(true);
@@ -51,26 +51,29 @@ const CarsTable: FC = () => {
     setImagesForGallery(galleryImages);
   }
 
-  function handleEdit(item: TCar) {
+  function handleEdit(item: TTire) {
     setEditMode(true);
     setItemForEdit(item);
   }
 
-  const onFormSubmit = async (values: TEditCar) => {
+  const onFormSubmit = async (values: TEditTire) => {
     console.log('values', values);
-    const { images, make, model, price, year, description, quantity, id } = values;
-    const action = id ? updateCarThunk : addCarThunk;
+    const { images, brand, loadIndex, price, model, quantity, size, speedRating, description, id } =
+      values;
+    const action = id ? updateTireThunk : addTireThunk;
     const formData = new FormData();
 
     if (id) formData.append('id', `${id}`);
 
     images.forEach(x => formData.append('images', x));
 
-    formData.append('make', make);
+    formData.append('brand', brand);
+    formData.append('loadIndex', `${loadIndex}`);
+    formData.append('speedRating', speedRating);
     formData.append('model', model);
-    formData.append('year', `${year}`);
-    formData.append('price', `${price}`);
     formData.append('quantity', `${quantity}`);
+    formData.append('size', `${size}`);
+    formData.append('price', `${price}`);
     formData.append('description', description ?? '');
 
     await action(formData);
@@ -79,14 +82,14 @@ const CarsTable: FC = () => {
 
   if (getPending) return <Spinner />;
 
-  if (editMode) return <CarsTableForm item={itemForEdit} back={back} onSubmit={onFormSubmit} />;
+  if (editMode) return <TiresTableForm item={itemForEdit} back={back} onSubmit={onFormSubmit} />;
 
   return (
     <>
-      {!cars?.length ? (
+      {!tires?.length ? (
         <div>No data Found</div>
       ) : (
-        <Table<TCar> className={styles.table} columns={columns} data={cars} />
+        <Table<TTire> className={styles.table} columns={columns} data={tires} />
       )}
       <Button variant="primary" onClick={addItem}>
         Add Item
@@ -97,4 +100,4 @@ const CarsTable: FC = () => {
   );
 };
 
-export default CarsTable;
+export default TiresTable;
