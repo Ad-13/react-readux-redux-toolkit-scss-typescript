@@ -2,22 +2,22 @@ import React, { FC } from 'react';
 
 import ProductCard from '@components/general/ProductCard';
 
-import { TCar } from '@helpersTypes/cars';
+import { TTire } from '@helpersTypes/tires';
 import { baseUrl } from '@constants/api';
 import { truncateTxt } from '@utils/truncateTxt';
 
 type IProps = {
-  item: TCar;
+  item: TTire;
 };
 
-const CarListItem: FC<IProps> = ({ item }) => {
-  console.log('CarListItem');
+const TireListItem: FC<IProps> = ({ item }) => {
+  console.log('TireListItem');
 
   return (
     <ProductCard
-      linkUrl={String(item.id)}
+      linkUrl={`${item.id}`}
       imageUrl={`${baseUrl}/${item.images[0]}`}
-      name={`${item.make} ${item.model}`}
+      name={`${item.brand} ${item.model}`}
       price={item.price}
     >
       {truncateTxt(item.description)}
@@ -25,4 +25,4 @@ const CarListItem: FC<IProps> = ({ item }) => {
   );
 };
 
-export default CarListItem;
+export default TireListItem;

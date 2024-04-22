@@ -80,10 +80,6 @@ const useColumns = ({ handleEdit, openGallery }: IProps): Column<TCar>[] => {
         accessor: 'quantity',
       },
       {
-        Header: 'info',
-        accessor: 'description',
-      },
-      {
         Header: 'actions',
         Cell: ({ row }: { row: Row<TCar> }) => (
           <>

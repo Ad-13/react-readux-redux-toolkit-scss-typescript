@@ -11,7 +11,7 @@ import CarsTableForm from './components/CarsTableForm';
 import useActions from '@hooks/useActions';
 import { TCar, TEditCar } from '@helpersTypes/cars';
 import useColumns from './hooks/useColumns';
-import useCarsTableData from './hooks/useCarsTableData';
+import useCarsData from '@hooks/useCarsData';
 import { TGalleryImage } from '@helpersTypes/TGalleryImage';
 import { baseUrl } from '@constants/api';
 
@@ -23,7 +23,7 @@ const CarsTable: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemForEdit, setItemForEdit] = useState<TCar | null>(null);
   const [imagesForGallery, setImagesForGallery] = useState<TGalleryImage[]>([]);
-  const { cars, getPending } = useCarsTableData();
+  const { cars, getPending } = useCarsData();
   const columns = useColumns({ handleEdit, openGallery });
   const { addCar: addCarThunk, updateCar: updateCarThunk } = useActions({
     addCar,

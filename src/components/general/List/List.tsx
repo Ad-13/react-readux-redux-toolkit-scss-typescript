@@ -2,26 +2,24 @@ import React from 'react';
 
 import Spinner from '@components/general/Spinner';
 
-interface ItemPropT<T> {
-  item: T;
-}
+import { TObjectWithItemProp } from '@helpersTypes/list';
 
-interface RenderItemPropsT<T> extends ItemPropT<T> {
-  [key: string]: unknown;
-}
+import styles from './List.module.scss';
 
-interface ListProps<T> {
+type ListProps<T> = {
   items: T[] | null;
   pending: boolean;
-  renderItem: (props: RenderItemPropsT<T>) => React.ReactNode;
+  renderItem: (props: TObjectWithItemProp<T>) => React.ReactNode;
   containerTag?: string;
   itemTag?: string;
-}
+  variant?: 'grid' | 'list';
+};
 
 const List = <T extends object>({
   items,
   containerTag = 'ul',
   itemTag = 'li',
+  variant = 'grid',
   pending,
   renderItem,
 }: ListProps<T>) => {
@@ -37,9 +35,11 @@ const List = <T extends object>({
       ) : (
         <>
           {items?.length ? (
-            <Container>
+            <Container className={styles[variant]}>
               {items.map((item, i) => (
-                <Item key={i}>{renderItem({ item })}</Item>
+                <Item key={i} className={styles.item}>
+                  {renderItem({ item })}
+                </Item>
               ))}
             </Container>
           ) : (

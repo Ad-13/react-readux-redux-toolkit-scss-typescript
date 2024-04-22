@@ -11,7 +11,7 @@ import TiresTableForm from './components/TiresTableForm';
 import useActions from '@hooks/useActions';
 import { TTire, TEditTire } from '@helpersTypes/tires';
 import useColumns from './hooks/useColumns';
-import useTiresTableData from './hooks/useTiresTableData';
+import useTiresData from '@hooks/useTiresData';
 import { TGalleryImage } from '@helpersTypes/TGalleryImage';
 import { baseUrl } from '@constants/api';
 
@@ -23,7 +23,7 @@ const TiresTable: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemForEdit, setItemForEdit] = useState<TTire | null>(null);
   const [imagesForGallery, setImagesForGallery] = useState<TGalleryImage[]>([]);
-  const { tires, getPending } = useTiresTableData();
+  const { tires, getPending } = useTiresData();
   const columns = useColumns({ handleEdit, openGallery });
   const { addTire: addTireThunk, updateTire: updateTireThunk } = useActions({
     addTire,

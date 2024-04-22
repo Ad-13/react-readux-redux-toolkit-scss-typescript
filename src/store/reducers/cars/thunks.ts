@@ -10,6 +10,11 @@ export const getCars = createAsyncThunk(`${EReducerName.cars}/getCars`, async ()
   return data;
 });
 
+export const getCarById = createAsyncThunk(`${EReducerName.cars}/getCarById`, async (id: TId) => {
+  const { data } = await carsApi.getCarById(id);
+  return data;
+});
+
 export const addCar = createAsyncThunk(`${EReducerName.cars}/addCar`, async (payload: FormData) => {
   const { data } = await carsApi.addCar(payload);
   return data;

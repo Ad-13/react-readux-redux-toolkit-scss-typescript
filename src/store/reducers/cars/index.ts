@@ -3,10 +3,11 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { EReducerName } from '@enums/EReducerName';
 import { TCar } from '@helpersTypes/cars';
 
-import { getCars, addCar, deleteCar, updateCar } from './thunks';
+import { getCars, getCarById, addCar, deleteCar, updateCar } from './thunks';
 
 type TInitialState = {
   cars: TCar[];
+  carDetails: TCar | null;
   getPending: boolean;
   addPending: boolean;
   deletePending: boolean;
@@ -14,6 +15,7 @@ type TInitialState = {
 
 const initialState: TInitialState = {
   cars: [],
+  carDetails: null,
   getPending: false,
   addPending: false,
   deletePending: false,
@@ -32,6 +34,16 @@ const carsSlice = createSlice({
       state.getPending = false;
     });
     builder.addCase(getCars.pending, state => {
+      state.getPending = true;
+    });
+    builder.addCase(getCarById.fulfilled, (state, { payload }) => {
+      state.carDetails = payload;
+      state.getPending = false;
+    });
+    builder.addCase(getCarById.rejected, state => {
+      state.getPending = false;
+    });
+    builder.addCase(getCarById.pending, state => {
       state.getPending = true;
     });
     builder.addCase(deleteCar.fulfilled, (state, { payload }) => {

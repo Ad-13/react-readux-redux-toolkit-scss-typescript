@@ -88,10 +88,6 @@ const useColumns = ({ handleEdit, openGallery }: IProps): Column<TTire>[] => {
         accessor: 'price',
       },
       {
-        Header: 'info',
-        accessor: 'description',
-      },
-      {
         Header: 'actions',
         Cell: ({ row }: { row: Row<TTire> }) => (
           <>

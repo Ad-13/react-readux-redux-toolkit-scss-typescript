@@ -1,21 +1,23 @@
 import React, { FC } from 'react';
 
-import List from '@components/general/List';
+import ProductListPage from '@components/general/ProductListPage';
 import CarListItem from './components/CarListItem';
 
-import { useCars } from './hooks/useCars';
+import useCarsData from '@hooks/useCarsData';
 import { TCar } from '@helpersTypes/cars';
 
 const CarsPage: FC = () => {
   console.log('CarsPage');
 
-  const { cars, getPending } = useCars();
+  const { cars, getPending } = useCarsData();
 
   return (
-    <>
-      <div>CarsPage</div>
-      <List<TCar> items={cars} pending={getPending} renderItem={CarListItem} />
-    </>
+    <ProductListPage<TCar>
+      title="Cars Page"
+      products={cars}
+      pending={getPending}
+      renderItem={CarListItem}
+    />
   );
 };
 

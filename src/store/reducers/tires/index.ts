@@ -3,10 +3,11 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { EReducerName } from '@enums/EReducerName';
 import { TTire } from '@helpersTypes/tires';
 
-import { getTires, addTire, deleteTire, updateTire } from './thunks';
+import { getTires, getTireById, addTire, deleteTire, updateTire } from './thunks';
 
 type TInitialState = {
   tires: TTire[];
+  tireDetails: TTire | null;
   getPending: boolean;
   addPending: boolean;
   deletePending: boolean;
@@ -14,6 +15,7 @@ type TInitialState = {
 
 const initialState: TInitialState = {
   tires: [],
+  tireDetails: null,
   getPending: false,
   addPending: false,
   deletePending: false,
@@ -32,6 +34,16 @@ const tiresSlice = createSlice({
       state.getPending = false;
     });
     builder.addCase(getTires.pending, state => {
+      state.getPending = true;
+    });
+    builder.addCase(getTireById.fulfilled, (state, { payload }) => {
+      state.tireDetails = payload;
+      state.getPending = false;
+    });
+    builder.addCase(getTireById.rejected, state => {
+      state.getPending = false;
+    });
+    builder.addCase(getTireById.pending, state => {
       state.getPending = true;
     });
     builder.addCase(deleteTire.fulfilled, (state, { payload }) => {

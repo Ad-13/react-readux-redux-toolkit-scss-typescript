@@ -5,8 +5,8 @@ import { getTires } from '@reducers/tires/thunks';
 import useActions from '@hooks/useActions';
 import { useAppSelector } from '@hooks/useAppSelector';
 
-const useTiresTableData = () => {
-  console.log('useTiresTableData');
+const useTiresData = () => {
+  console.log('useTiresData');
   const { tires, getPending } = useAppSelector(state => state.tires);
   const { getTires: getTiresThunk } = useActions({
     getTires,
@@ -19,4 +19,4 @@ const useTiresTableData = () => {
   return { tires, getPending };
 };
 
-export default useTiresTableData;
+export default useTiresData;
