@@ -16,3 +16,11 @@ export const showWarning = (message = '') =>
     transition: Zoom,
     style: { borderRadius: '3px', backgroundColor: '#f89406' },
   });
+
+export const showSuccess = (message = '') =>
+  toast.success(message, {
+    position: 'top-center',
+    closeOnClick: true,
+    transition: Zoom,
+    style: { borderRadius: '3px' },
+  });

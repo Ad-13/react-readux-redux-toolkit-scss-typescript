@@ -8,6 +8,7 @@ import styles from './Textarea.module.scss';
 
 interface IProps extends FieldProps {
   label: string;
+  rows?: number;
   isShowError: boolean;
   disabled: boolean;
 }
@@ -18,6 +19,7 @@ const Textarea: FC<IProps> = ({
   label,
   isShowError = true,
   disabled,
+  rows,
 }) => {
   const error = (touched[name] && errors[name]) as string;
 
@@ -40,6 +42,7 @@ const Textarea: FC<IProps> = ({
           disabled={disabled}
           onBlur={onBlur}
           onChange={onChange}
+          rows={rows}
           className={classNames(styles.input, {
             [styles.invalid]: error,
           })}

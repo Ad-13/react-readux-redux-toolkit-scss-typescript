@@ -1,49 +1,41 @@
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 
-import Spinner from '@components/general/Spinner';
-
-import { baseUrl } from '@constants/api';
+import ProductPageSlider from './components/ProductPageSlider';
 
 import styles from './ProductPage.module.scss';
 
-interface IProps<T> {
+interface IProps {
   images: string[];
   price: number;
   title: string;
-  product: T;
-  pending: boolean;
+  description?: string;
+  orderContent?: ReactNode;
 }
 
-const ProductPage = <T extends object>({
+const ProductPage = ({
   title,
   images,
   price,
-  pending,
+  description,
   children,
-}: IProps<T> & PropsWithChildren) => {
-  const [isBought, setIsBought] = useState(false);
-
-  const handleBuyClick = () => {
-    console.log('handleBuyClick');
-    setIsBought(true);
-  };
-
-  if (pending) return <Spinner />;
+  orderContent,
+}: IProps & PropsWithChildren) => {
+  console.log('ProductPage');
 
   return (
-    <div className={styles.carDetails}>
-      <h1 className={styles.carDetailsTitle}>{title}</h1>
-      <div className={styles.carImgWrapper}>
-        <img className={styles.carImg} src={`${baseUrl}/${images[0]}`} alt={title} />
+    <div className={styles.productDetails}>
+      <div className={styles.productDetailsMain}>
+        <div className={`${styles.productBlock} ${styles.productLeft}`}>
+          <ProductPageSlider images={images} />
+          {description && <div className={styles.description}>{description}</div>}
+        </div>
+        <div className={`${styles.productBlock} ${styles.productRigth}`}>
+          <h1 className={styles.productDetailsTitle}>{title}</h1>
+          <p className={styles.productPrice}>Price: ${price}</p>
+          {orderContent && <div className={styles.orderContent}>{orderContent}</div>}
+        </div>
       </div>
-      <p className={styles.carPrice}>Price: ${price}</p>
-      <div className={styles.customContent}>{children}</div>
-      {!isBought && (
-        <button className={styles.buyButton} onClick={handleBuyClick}>
-          Buy Now
-        </button>
-      )}
-      {isBought && <p className={styles.successMessage}>Thank you for your purchase!</p>}
+      {children && <div className={styles.customContent}>{children}</div>}
     </div>
   );
 };

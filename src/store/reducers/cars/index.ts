@@ -3,7 +3,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { EReducerName } from '@enums/EReducerName';
 import { TCar } from '@helpersTypes/cars';
 
-import { getCars, getCarById, addCar, deleteCar, updateCar } from './thunks';
+import { getCars, getCarById, addCar, deleteCar, updateCar, createContactMessage } from './thunks';
 
 type TInitialState = {
   cars: TCar[];
@@ -11,6 +11,7 @@ type TInitialState = {
   getPending: boolean;
   addPending: boolean;
   deletePending: boolean;
+  createMessagePending: boolean;
 };
 
 const initialState: TInitialState = {
@@ -19,6 +20,7 @@ const initialState: TInitialState = {
   getPending: false,
   addPending: false,
   deletePending: false,
+  createMessagePending: false,
 };
 
 const carsSlice = createSlice({
@@ -26,6 +28,15 @@ const carsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
+    builder.addCase(createContactMessage.fulfilled, state => {
+      state.createMessagePending = false;
+    });
+    builder.addCase(createContactMessage.rejected, state => {
+      state.createMessagePending = false;
+    });
+    builder.addCase(createContactMessage.pending, state => {
+      state.createMessagePending = true;
+    });
     builder.addCase(getCars.fulfilled, (state, { payload }) => {
       state.cars = payload;
       state.getPending = false;

@@ -1,0 +1,27 @@
+.mainSlider {
+  margin-bottom: 20px;
+}
+
+.navSlider {
+  [class="slider-slide"] {
+    cursor: pointer;
+    padding: 1.5rem;
+
+    &:hover {
+      [class~="responsive-img"] {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  [class~="responsive-img"] {
+    transition: all .2s ease-in-out;
+  }
+  
+  [class~="slick-current"] {
+    [class~="slider-slide"] {
+      outline: -webkit-focus-ring-color auto 1px;
+    }
+  }
+}

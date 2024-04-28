@@ -31,11 +31,15 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+html,
+body {
+	height: 100%;
+}
 body {
 	line-height: 1;
 	font-size: 16px;
 	min-width: 320px;
-	min-height: 100vh;
+	// min-height: 100vh;
   font-family: 'Roboto', sans-serif;
 }
 ol, ul {

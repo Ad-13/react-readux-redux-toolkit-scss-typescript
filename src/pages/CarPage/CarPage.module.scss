@@ -1,35 +1,3 @@
-.carDetails {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-  .carImgWrapper {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .carImg {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .carPrice,
-  .carYear,
-  .carDescription {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  .carDescription {
-    white-space: pre-line; /* Для отображения многострочного описания */
-  }
-}
-
 .buyButton {
   background-color: #007bff;
   color: #fff;
