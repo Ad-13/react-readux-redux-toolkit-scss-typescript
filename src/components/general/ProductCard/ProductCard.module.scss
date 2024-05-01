@@ -10,6 +10,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   position: relative;
+  overflow: hidden;
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -29,9 +30,9 @@
 }
 
 .productImage {
-  width: 150px;
-  height: auto;
   border-radius: 5px;
+  max-height: 190px;
+  max-width: 100%;
   margin-bottom: 20px;
   transition: all .2s ease-in-out;
 }

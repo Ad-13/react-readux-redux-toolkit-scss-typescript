@@ -6,6 +6,7 @@ import CartPage from '@pages/CartPage';
 import CarsPage from '@pages/CarsPage';
 import CarPage from '@pages/CarPage';
 import TiresPage from '@pages/TiresPage';
+import TirePage from '@pages/TirePage';
 
 import { ERouteNames } from '@enums/ERouteNames';
 import { TRoute } from '@helpersTypes/TRoute';
@@ -17,6 +18,7 @@ const publicRoutes: TRoute[] = [
   { path: ERouteNames.CARS, key: ERouteNames.CARS, element: <CarsPage /> },
   { path: ERouteNames.CAR, key: ERouteNames.CAR, element: <CarPage /> },
   { path: ERouteNames.TIRES, key: ERouteNames.TIRES, element: <TiresPage /> },
+  { path: ERouteNames.TIRE, key: ERouteNames.TIRE, element: <TirePage /> },
 ];
 
 export default publicRoutes;

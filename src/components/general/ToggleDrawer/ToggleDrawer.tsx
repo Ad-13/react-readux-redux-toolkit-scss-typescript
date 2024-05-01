@@ -16,7 +16,14 @@ const ToggleDrawer: FC = () => {
     <>
       <HamburgerButton className={styles.hamburger} isOpen={isOpen} onClick={toggleIsOpen} />
       <AnimatePresence>
-        {isOpen && <Drawer onOverlayClick={toggleIsOpen}>test</Drawer>}
+        {isOpen && (
+          <Drawer onOverlayClick={toggleIsOpen}>
+            <span className={styles.close} onClick={toggleIsOpen}>
+              <i className="fa-regular fa-circle-xmark" />
+            </span>
+            test
+          </Drawer>
+        )}
       </AnimatePresence>
     </>
   );

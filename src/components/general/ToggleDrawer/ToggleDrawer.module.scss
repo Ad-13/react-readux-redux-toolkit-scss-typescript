@@ -1,4 +1,9 @@
-.hamburger {
+.close {
+  cursor: pointer;
+  display: inline-block;
   position: absolute;
-  z-index: 1001;
+  top: 20px;
+  right: 20px;
+  color: #800000;
+  font-size: 2rem;
 }

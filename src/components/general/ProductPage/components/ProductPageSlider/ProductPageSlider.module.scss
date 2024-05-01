@@ -1,5 +1,14 @@
 .mainSlider {
   margin-bottom: 20px;
+
+  [class="slider-slide"] {
+    text-align: center;
+  }
+
+  [class~="responsive-img"] {
+    display: inline-block;
+    max-height: 400px;
+  }
 }
 
 .navSlider {
