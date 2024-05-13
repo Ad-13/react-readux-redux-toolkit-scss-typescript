@@ -9,17 +9,19 @@ import useModalEscape from './hooks/useModalEscape';
 import styles from './Modal.module.scss';
 
 interface IProps {
-  title: string;
-  isOpen: boolean;
   onClose: () => void;
+  title: string;
   children: ReactNode;
+  size?: 'xl' | 'md';
+  isOpen?: boolean;
   header?: ReactElement;
   footer?: ReactElement;
 }
 
 const Modal: FC<PropsWithChildren<IProps>> = ({
   title,
-  isOpen,
+  isOpen = true,
+  size = 'md',
   onClose,
   children,
   header,
@@ -34,7 +36,7 @@ const Modal: FC<PropsWithChildren<IProps>> = ({
       {isOpen && (
         <BgOverlay onOverlayClick={onClose}>
           <motion.div
-            className={styles.modalContent}
+            className={`${styles.modalContent} ${size && styles[size]}`}
             initial={{ y: -50 }}
             animate={{ y: 0 }}
             exit={{ y: -50 }}

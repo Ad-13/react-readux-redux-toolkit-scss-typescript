@@ -27,6 +27,7 @@ interface IProps extends FieldProps {
   isShowError: boolean;
   disabled: boolean;
   image: ReactNode;
+  className: string;
 }
 
 const Input: FC<IProps> = ({
@@ -37,12 +38,13 @@ const Input: FC<IProps> = ({
   isShowError = true,
   image,
   disabled,
+  className,
   ...props
 }) => {
   const error = (touched[name] && errors[name]) as string;
 
   return (
-    <div className={styles.inputGroup}>
+    <div className={`${styles.inputGroup} ${className ? className : ''}`}>
       {label && (
         <label className={styles.label} htmlFor={name}>
           {label}

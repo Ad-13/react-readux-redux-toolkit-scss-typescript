@@ -8,16 +8,15 @@ import { TGalleryImage } from '@helpersTypes/TGalleryImage';
 // import styles from './GalleryModal.module.scss';
 
 interface IProps {
-  isOpen: boolean;
   images: TGalleryImage[];
   onClose: () => void;
 }
 
-const GalleryModal: FC<IProps> = ({ isOpen, images, onClose }) => {
+const GalleryModal: FC<IProps> = ({ images, onClose }) => {
   console.log('GalleryModal');
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Login">
+    <Modal onClose={onClose} title="Login">
       <Gallery images={images} />
     </Modal>
   );

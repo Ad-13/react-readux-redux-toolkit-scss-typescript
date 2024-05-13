@@ -5,6 +5,12 @@
 }
 
 .list {
+  .item {
+    border-bottom: 1px solid #bbb;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 }
 
 .grid {

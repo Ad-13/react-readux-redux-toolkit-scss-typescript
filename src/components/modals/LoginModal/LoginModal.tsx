@@ -16,12 +16,11 @@ import { initialValues, validationSchema } from './form';
 // import styles from './LoginModal.module.scss';
 
 interface IProps {
-  isOpen: boolean;
   onClose: () => void;
   onRegisterClick: () => void;
 }
 
-const LoginModal: FC<IProps> = ({ isOpen, onClose, onRegisterClick }) => {
+const LoginModal: FC<IProps> = ({ onClose, onRegisterClick }) => {
   console.log('LoginModal');
   const { login: loginThunk } = useActions({ login });
   const { pending } = useAppSelector(state => state.auth);
@@ -33,7 +32,7 @@ const LoginModal: FC<IProps> = ({ isOpen, onClose, onRegisterClick }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Login">
+    <Modal onClose={onClose} title="Login">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

@@ -9,9 +9,10 @@ import styles from './List.module.scss';
 type ListProps<T> = {
   items: T[] | null;
   pending: boolean;
-  renderItem: (props: TObjectWithItemProp<T>) => React.ReactNode;
+  RenderItem: React.ElementType<TObjectWithItemProp<T>>;
   containerTag?: string;
   itemTag?: string;
+  keyField?: keyof T;
   variant?: 'grid' | 'list';
 };
 
@@ -21,31 +22,28 @@ const List = <T extends object>({
   itemTag = 'li',
   variant = 'grid',
   pending,
-  renderItem,
+  RenderItem,
+  keyField,
 }: ListProps<T>) => {
   console.log('List');
 
   const Container = containerTag as keyof JSX.IntrinsicElements;
   const Item = itemTag as keyof JSX.IntrinsicElements;
 
+  if (pending) return <Spinner width={25} />;
+
   return (
     <>
-      {pending ? (
-        <Spinner width={25} />
+      {items?.length ? (
+        <Container className={styles[variant]}>
+          {items.map((item, i) => (
+            <Item key={keyField ? (item[keyField] as string) : i} className={styles.item}>
+              <RenderItem item={item} />
+            </Item>
+          ))}
+        </Container>
       ) : (
-        <>
-          {items?.length ? (
-            <Container className={styles[variant]}>
-              {items.map((item, i) => (
-                <Item key={i} className={styles.item}>
-                  {renderItem({ item })}
-                </Item>
-              ))}
-            </Container>
-          ) : (
-            'No items found'
-          )}
-        </>
+        'No items found'
       )}
     </>
   );

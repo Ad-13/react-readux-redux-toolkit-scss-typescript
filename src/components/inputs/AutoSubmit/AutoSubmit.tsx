@@ -6,11 +6,12 @@ interface IProps {
 }
 
 const AutoSubmit: React.FC<IProps> = ({ debounce = 0 }) => {
-  const { values, initialValues, isSubmitting, submitForm } = useFormikContext();
+  const { values, initialValues, isSubmitting, submitForm, setSubmitting } = useFormikContext();
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleSubmit = useCallback(() => {
-    submitForm();
+  const handleSubmit = useCallback(async () => {
+    await submitForm();
+    setSubmitting(false);
   }, []);
 
   useEffect(() => {

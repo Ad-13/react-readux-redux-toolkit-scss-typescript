@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useRef } from 'react';
 
 import Button from '@components/general/Button';
-import LoginModal from '@modals/LoginModal';
-import RegisterModal from '@modals/RegisterModal';
+import LoginRegisterModal from '@modals/LoginRegisterModal';
+import { LoginRegisterModalRef } from '@components/modals/LoginRegisterModal/LoginRegisterModal';
 
 import { useAppSelector } from '@hooks/useAppSelector';
 
@@ -11,18 +11,9 @@ import { useAppSelector } from '@hooks/useAppSelector';
 const Login: FC = () => {
   console.log('Login');
   const { pending } = useAppSelector(state => state.auth);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const ref = useRef<LoginRegisterModalRef>(null);
 
-  const handleLogin = () => {
-    setIsRegisterModalOpen(false);
-    setIsLoginModalOpen(true);
-  };
-
-  const handleRegisterClick = () => {
-    setIsLoginModalOpen(false);
-    setIsRegisterModalOpen(true);
-  };
+  const handleLogin = () => ref.current?.handleLogin();
 
   return (
     <>
@@ -30,16 +21,7 @@ const Login: FC = () => {
         login
       </Button>
 
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-        onRegisterClick={handleRegisterClick}
-      />
-      <RegisterModal
-        isOpen={isRegisterModalOpen}
-        onClose={() => setIsRegisterModalOpen(false)}
-        onLoginClick={handleLogin}
-      />
+      <LoginRegisterModal ref={ref} />
     </>
   );
 };

@@ -58,7 +58,7 @@ const carsSlice = createSlice({
       state.getPending = true;
     });
     builder.addCase(deleteCar.fulfilled, (state, { payload }) => {
-      state.cars = state.cars.filter(x => x.id === payload);
+      state.cars = state.cars.filter(x => x.id !== payload);
       state.deletePending = false;
     });
     builder.addCase(deleteCar.rejected, state => {

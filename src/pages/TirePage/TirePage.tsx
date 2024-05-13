@@ -1,31 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import Spinner from '@components/general/Spinner';
 import ProductPage from '@components/general/ProductPage';
+import OrderContent from './components/OrderContent';
 
 import useTireDetails from '@hooks/useTireDetails';
 
-import styles from './TirePage.module.scss';
-
-const OrderContent: FC = () => {
-  const [isBought, setIsBought] = useState(false);
-
-  const handleBuyClick = () => {
-    console.log('handleBuyClick');
-    setIsBought(true);
-  };
-
-  return (
-    <>
-      {!isBought && (
-        <button className={styles.buyButton} onClick={handleBuyClick}>
-          Buy Now
-        </button>
-      )}
-      {isBought && <p className={styles.successMessage}>Thank you for your purchase!</p>}
-    </>
-  );
-};
+// import styles from './TirePage.module.scss';
 
 const TirePage: FC = () => {
   const { tireDetails, getPending } = useTireDetails();
@@ -39,7 +20,7 @@ const TirePage: FC = () => {
       images={tireDetails.images}
       price={tireDetails.price}
       title={tireDetails.brand}
-      orderContent={<OrderContent />}
+      orderContent={<OrderContent item={tireDetails} />}
     />
   );
 };

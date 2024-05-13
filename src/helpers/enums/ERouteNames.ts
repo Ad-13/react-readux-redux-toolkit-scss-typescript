@@ -9,5 +9,6 @@ export enum ERouteNames {
   CABINET = '/cabinet',
   NOT_FOUND = '/not-found',
   ADMIN = '/admin',
+  CHECKOUT = '/checkout',
   OTHER = '*',
 }

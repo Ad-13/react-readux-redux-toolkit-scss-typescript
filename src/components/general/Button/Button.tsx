@@ -8,6 +8,7 @@ import styles from './Button.module.scss';
 interface IProps {
   type?: 'button' | 'submit' | 'reset' | undefined;
   variant?:
+    | 'base'
     | 'primary'
     | 'secondary'
     | 'success'
@@ -26,7 +27,7 @@ interface IProps {
 const Button: FC<PropsWithChildren<IProps>> = ({
   type = 'button',
   className,
-  variant,
+  variant = 'base',
   children,
   pending,
   disabled,

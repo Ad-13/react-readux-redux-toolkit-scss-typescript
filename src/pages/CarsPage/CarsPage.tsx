@@ -16,7 +16,7 @@ const CarsPage: FC = () => {
       title="Cars Page"
       products={cars}
       pending={getPending}
-      renderItem={CarListItem}
+      RenderItem={CarListItem}
     />
   );
 };

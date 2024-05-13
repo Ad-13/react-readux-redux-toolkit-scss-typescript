@@ -94,8 +94,7 @@ const TiresTable: FC = () => {
       <Button variant="primary" onClick={addItem}>
         Add Item
       </Button>
-
-      <GalleryModal isOpen={isModalOpen} onClose={closeGallery} images={imagesForGallery} />
+      {isModalOpen && <GalleryModal onClose={closeGallery} images={imagesForGallery} />}
     </>
   );
 };

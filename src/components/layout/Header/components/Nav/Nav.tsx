@@ -14,7 +14,7 @@ const Nav: FC = () => {
 
   return (
     <nav className={styles.nav}>
-      <Link to={ERouteNames.CART}>Cart</Link>
+      <Link to={ERouteNames.CHECKOUT}>Checkout</Link>
       {isAdmin && <Link to={ERouteNames.ADMIN}>Admin</Link>}
       {isAuthenticated && <Link to={ERouteNames.CABINET}>CABINET</Link>}
     </nav>

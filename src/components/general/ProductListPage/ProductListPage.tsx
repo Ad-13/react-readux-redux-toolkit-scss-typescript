@@ -9,15 +9,15 @@ import styles from './ProductListPage.module.scss';
 interface IProps<T> {
   title: string;
   products: T[];
-  renderItem: (props: TObjectWithItemProp<T>) => React.ReactNode;
+  RenderItem: React.ElementType<TObjectWithItemProp<T>>;
   pending: boolean;
 }
 
-const ProductListPage = <T extends object>({ title, products, renderItem, pending }: IProps<T>) => {
+const ProductListPage = <T extends object>({ title, products, RenderItem, pending }: IProps<T>) => {
   return (
     <>
       <div className={styles.title}>{title}</div>
-      <List<T> items={products} pending={pending} renderItem={renderItem} />
+      <List<T> items={products} pending={pending} RenderItem={RenderItem} />
     </>
   );
 };

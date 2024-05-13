@@ -47,7 +47,7 @@ const tiresSlice = createSlice({
       state.getPending = true;
     });
     builder.addCase(deleteTire.fulfilled, (state, { payload }) => {
-      state.tires = state.tires.filter(x => x.id === payload);
+      state.tires = state.tires.filter(x => x.id !== payload);
       state.deletePending = false;
     });
     builder.addCase(deleteTire.rejected, state => {

@@ -8,6 +8,10 @@
   position: relative;
   width: 80%;
   word-wrap: break-word;
+  &.xl {
+    max-width: 960px;
+    width: 88%;
+  }
 }
 
 .modalHeader {

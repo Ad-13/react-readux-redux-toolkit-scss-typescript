@@ -20,7 +20,7 @@ const OrderContent: FC = () => {
       <button className={styles.buyButton} onClick={handleContact}>
         Contact seller
       </button>
-      <ContactModal isOpen={isModalOpen} onClose={close} />
+      {isModalOpen && <ContactModal onClose={close} />}
     </>
   );
 };

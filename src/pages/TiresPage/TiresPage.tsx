@@ -16,7 +16,7 @@ const TiresPage: FC = () => {
       title="Tires Page"
       products={tires}
       pending={getPending}
-      renderItem={TireListItem}
+      RenderItem={TireListItem}
     />
   );
 };

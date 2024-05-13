@@ -15,11 +15,10 @@ import useActions from '@hooks/useActions';
 import { initialValues, validationSchema } from './form';
 
 interface IProps {
-  isOpen: boolean;
   onClose: () => void;
 }
 
-const ContactModal: FC<IProps> = ({ isOpen, onClose }) => {
+const ContactModal: FC<IProps> = ({ onClose }) => {
   console.log('ContactModal');
   const { id } = useParams();
   const { createContactMessage: createContactMessageThunk } = useActions({ createContactMessage });
@@ -32,7 +31,7 @@ const ContactModal: FC<IProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Contact">
+    <Modal onClose={onClose} title="Contact">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

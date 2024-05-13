@@ -5,6 +5,8 @@ import { deleteCar } from '@reducers/cars/thunks';
 
 import Button from '@components/general/Button';
 import Spinner from '@components/general/Spinner';
+import ButtonDelete from '@components/general/ButtonDelete';
+import ButtonEdit from '@components/general/ButtonEdit';
 
 import { baseUrl } from '@constants/api';
 import { TCar } from '@helpersTypes/cars';
@@ -87,9 +89,8 @@ const useColumns = ({ handleEdit, openGallery }: IProps): Column<TCar>[] => {
               <Button variant="info" onClick={() => handleEdit(row.original)}>
                 <i className="fa-regular fa-pen-to-square" />
               </Button>
-              <Button variant="danger" onClick={() => handleDelete(row.original.id)}>
-                <i className="fa-regular fa-trash-can" />
-              </Button>
+              <ButtonEdit onClick={() => handleEdit(row.original)} />
+              <ButtonDelete onClick={() => handleDelete(row.original.id)} />
             </div>
             {deletePending && deletingRowId === row.original.id && (
               <div className={styles.spinnerWrapper}>
